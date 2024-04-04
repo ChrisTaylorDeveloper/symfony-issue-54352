@@ -30,8 +30,14 @@ class RunFinderCommand extends Command
         $finder->in('ssh2.sftp://' . intval($sftp) . $_ENV['SSH_HOST_PATH'])->files();
 
         if ($finder->count() > 0) {
-            foreach ($finder as $file) {
-                echo $file->getMTime() . PHP_EOL;
+            foreach ($finder as $k => $file) {
+                // echo $file->getMTime() . PHP_EOL;
+                echo $k . PHP_EOL;
+                echo $file->getBasename() . PHP_EOL;
+                echo $file->getFilename() . PHP_EOL;
+                echo $file->getFilenameWithoutExtension() . PHP_EOL;
+                echo $file->getPathname() . PHP_EOL;
+                echo $file->getRelativePathname() . PHP_EOL;
             }
         }
 
