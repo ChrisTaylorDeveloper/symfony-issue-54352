@@ -15,10 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'app:run-finder',
-    description: 'Add a short description for your command',
+    name: 'app:finder-remote',
+    description: '',
 )]
-class RunFinderCommand extends Command
+class RunFinderRemoteCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -29,11 +29,11 @@ class RunFinderCommand extends Command
         $finder = new Finder();
         $finder->in('ssh2.sftp://' . intval($sftp) . $_ENV['SSH_HOST_PATH'])->files();
 
-        if ($finder->count() > 0) {
-            foreach ($finder as $k => $file) {
-                echo $file->getPathname() . PHP_EOL;
-                echo $file->getMTime() . PHP_EOL;
-            }
+        foreach ($finder as $file) {
+            echo $file->getRealPath() . PHP_EOL;
+            echo $file->getPathname() . PHP_EOL;
+            echo $file->getRelativePathname() . PHP_EOL;
+            echo $file->getMTime() . PHP_EOL;
         }
 
         return Command::SUCCESS;

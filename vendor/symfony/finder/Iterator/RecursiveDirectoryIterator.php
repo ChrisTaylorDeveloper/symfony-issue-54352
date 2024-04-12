@@ -65,7 +65,7 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         $subPathname .= $this->getFilename();
 
         if ('/' !== $basePath = $this->rootPath) {
-            $basePath .= $this->directorySeparator;
+            // $basePath .= $this->directorySeparator;
         }
 
         return new SplFileInfo($basePath.$subPathname, $this->subPath, $subPathname);
