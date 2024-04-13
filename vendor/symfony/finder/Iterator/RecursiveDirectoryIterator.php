@@ -68,6 +68,9 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
             // $basePath .= $this->directorySeparator;
         }
 
+        var_dump(new SplFileInfo($basePath.$subPathname, $this->subPath, $subPathname));
+        die;
+
         return new SplFileInfo($basePath.$subPathname, $this->subPath, $subPathname);
     }
 
